@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Verify Threat Report</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="brand">🛡️ Threat Intel Network</div>
+  <div>
+    <a href="dashboard.html" id="navDashboardLink">Dashboard</a>
+    <a href="submit.html" id="navSubmitLink">Submit Report</a>
+    <a href="view.html">View Threats</a>
+    <a href="verify.html">Verify Report</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="container" style="max-width:700px;">
+  <h1>🔎 Verify Report Integrity</h1>
+  <p class="muted">Paste a report's blockchain hash to confirm it exists on-chain and hasn't been tampered with.</p>
+
+  <div class="card">
+    <div class="form-group">
+      <label>Report Hash (SHA-256)</label>
+      <input type="text" id="hashInput" placeholder="e.g. 3a7bd3e2360a3d..." />
+    </div>
+    <button onclick="verifyReport()">Verify on Blockchain</button>
+  </div>
+
+  <div id="alertBox" class="alert" style="display:none;"></div>
+  <div id="resultCard"></div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/verify.js"></script>
+</body>
+</html>

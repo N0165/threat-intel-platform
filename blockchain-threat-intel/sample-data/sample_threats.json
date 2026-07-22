@@ -1,0 +1,58 @@
+[
+  {
+    "attackTitle": "Phishing campaign targeting HR staff",
+    "attackType": "Phishing",
+    "dateOfAttack": "2026-05-12",
+    "ioc": {
+      "ipAddresses": ["185.220.101.34"],
+      "fileHashes": [],
+      "domains": ["hr-portal-verify.com"]
+    },
+    "attackDescription": "Employees in the HR department received emails impersonating the payroll system, asking them to 'verify' login credentials via a fake portal.",
+    "howItHappened": "Attacker spoofed the internal payroll sender address and used a lookalike domain to host a credential-harvesting page.",
+    "impact": "3 employee accounts compromised; attacker briefly accessed payroll records before detection.",
+    "mitigationSteps": "Reset affected passwords, enabled MFA org-wide, blocked the malicious domain at the firewall, ran a phishing-awareness refresher."
+  },
+  {
+    "attackTitle": "Ransomware encryption of file server",
+    "attackType": "Ransomware",
+    "dateOfAttack": "2026-06-03",
+    "ioc": {
+      "ipAddresses": ["45.155.204.12"],
+      "fileHashes": ["e99a18c428cb38d5f260853678922e03", "8f14e45fceea167a5a36dedd4bea2543"],
+      "domains": []
+    },
+    "attackDescription": "A ransomware variant encrypted files on the shared department file server overnight.",
+    "howItHappened": "Initial access via an unpatched RDP endpoint exposed to the internet; attacker moved laterally and deployed the payload after hours.",
+    "impact": "48 hours of downtime for the finance department; no ransom paid, restored from backups.",
+    "mitigationSteps": "Closed exposed RDP port, enforced VPN-only remote access, patched the vulnerable service, improved backup isolation."
+  },
+  {
+    "attackTitle": "SQL injection on customer login form",
+    "attackType": "SQL Injection",
+    "dateOfAttack": "2026-04-20",
+    "ioc": {
+      "ipAddresses": ["103.21.244.5"],
+      "fileHashes": [],
+      "domains": []
+    },
+    "attackDescription": "Automated scanning tool found and exploited an SQL injection vulnerability in the customer login form.",
+    "howItHappened": "Login form concatenated user input directly into a SQL query without parameterization.",
+    "impact": "Attacker was able to enumerate a small number of usernames before the WAF blocked further attempts.",
+    "mitigationSteps": "Rewrote query layer to use parameterized queries/ORM, added WAF rule, ran full code audit for similar patterns."
+  },
+  {
+    "attackTitle": "DDoS attack on public API gateway",
+    "attackType": "DDoS",
+    "dateOfAttack": "2026-06-15",
+    "ioc": {
+      "ipAddresses": ["198.51.100.23", "203.0.113.77"],
+      "fileHashes": [],
+      "domains": []
+    },
+    "attackDescription": "A volumetric DDoS attack overwhelmed the public API gateway with traffic spikes reaching 40 Gbps.",
+    "howItHappened": "Botnet-driven UDP flood targeting the load balancer's public IP.",
+    "impact": "API availability degraded for 90 minutes; some downstream partner integrations timed out.",
+    "mitigationSteps": "Enabled upstream DDoS scrubbing service, added rate limiting, updated incident response runbook."
+  }
+]

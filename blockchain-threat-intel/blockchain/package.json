@@ -1,0 +1,14 @@
+{
+  "name": "threat-intel-blockchain",
+  "version": "1.0.0",
+  "description": "Smart contract for the Blockchain-Based Cybersecurity Threat Intelligence Sharing System",
+  "scripts": {
+    "node": "hardhat node",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.0"
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Dashboard - Threat Intel Network</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.3/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="brand">🛡️ Threat Intel Network</div>
+  <div>
+    <a href="dashboard.html" id="navDashboardLink">Dashboard</a>
+    <a href="submit.html" id="navSubmitLink">Submit Report</a>
+    <a href="view.html">View Threats</a>
+    <a href="verify.html">Verify Report</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>📊 Dashboard</h1>
+  <p class="muted" id="welcomeMsg"></p>
+
+  <div id="alertBox" class="alert" style="display:none;"></div>
+
+  <div class="grid-3">
+    <div class="stat-box">
+      <div class="num" id="statTotal">-</div>
+      <div class="label">Total Threat Reports</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="statOrgs">-</div>
+      <div class="label">Registered Organizations</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="statTypes">-</div>
+      <div class="label">Distinct Attack Types</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <h3>Attacks by Type</h3>
+      <canvas id="typeChart" height="220"></canvas>
+    </div>
+    <div class="card">
+      <h3>Recent Threats</h3>
+      <table id="recentTable">
+        <thead>
+          <tr><th>Title</th><th>Type</th><th>Org</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

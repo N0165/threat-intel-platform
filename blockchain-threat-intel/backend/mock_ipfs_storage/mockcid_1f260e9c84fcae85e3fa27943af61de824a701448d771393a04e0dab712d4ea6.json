@@ -1,0 +1,19 @@
+{
+  "organizationName": "GD",
+  "attackTitle": "Phishing campaign targeting HR staff",
+  "attackType": "Phishing",
+  "ioc": {
+    "ipAddresses": [
+      "185.220.101.34"
+    ],
+    "fileHashes": [],
+    "domains": [
+      "hr-portal-verify.com"
+    ]
+  },
+  "attackDescription": "Employees in the HR department received emails impersonating the payroll system, asking them to \"verify\" login credentials via a fake portal.",
+  "howItHappened": "Attacker spoofed the internal payroll sender address and used a lookalike domain to host a credential-harvesting page.",
+  "impact": "3 employee accounts compromised; attacker briefly accessed payroll records before detection.",
+  "mitigationSteps": "Reset affected passwords, enabled MFA org-wide, blocked the malicious domain at the firewall, ran a phishing-awareness refresher.",
+  "dateOfAttack": "2026-07-08"
+}

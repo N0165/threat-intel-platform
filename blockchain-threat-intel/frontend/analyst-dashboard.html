@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Analyst Intelligence Feed</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/chart.min.js"></script>
+<style>
+  /* Distinct visual identity for the analyst role so it never looks
+     like the admin/organization dashboard at a glance. */
+  :root { --accent: #4f8cff; }
+  nav .brand { color: #4f8cff; }
+  .feed-item {
+    border-left: 3px solid #4f8cff;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    background: var(--panel-2);
+    border-radius: 0 8px 8px 0;
+  }
+  .ioc-tag {
+    display: inline-block;
+    background: rgba(79,140,255,0.15);
+    border: 1px solid rgba(79,140,255,0.35);
+    color: #a9c6ff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin: 2px 4px 2px 0;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">🔎 Analyst Intelligence Feed</div>
+  <div>
+    <a href="analyst-dashboard.html">Analyst Dashboard</a>
+    <a href="view.html">View Threats</a>
+    <a href="verify.html">Verify Report</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Analyst Intelligence Feed</h1>
+  <p class="muted" id="welcomeMsg"></p>
+
+  <div id="alertBox" class="alert" style="display:none;"></div>
+
+  <div class="grid-3">
+    <div class="stat-box">
+      <div class="num" id="statTotal">-</div>
+      <div class="label">Total Reports in Network</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="statIocs">-</div>
+      <div class="label">Unique IOCs Indexed</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="statOrgs">-</div>
+      <div class="label">Contributing Organizations</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <h3>🧭 IOC Lookup</h3>
+    <p class="muted">Search for a specific IP address, domain, or file hash across every shared report.</p>
+    <div class="grid-2">
+      <input type="text" id="iocSearchInput" placeholder="e.g. 185.220.101.34 or malicious-site.com" />
+      <button onclick="searchIOC()">Search IOC</button>
+    </div>
+    <div id="iocResults" style="margin-top:14px;"></div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <h3>Attack Types (network-wide)</h3>
+      <canvas id="typeChart" height="220"></canvas>
+    </div>
+    <div class="card">
+      <h3>Top Reporting Organizations</h3>
+      <table id="orgTable">
+        <thead><tr><th>Organization</th><th>Reports Submitted</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <h3 style="margin:0;">📡 Recent Activity Feed</h3>
+      <button class="secondary" onclick="exportCSV()">⬇️ Export All Reports (CSV)</button>
+    </div>
+    <div id="activityFeed" style="margin-top:14px;"></div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/analyst-dashboard.js"></script>
+</body>
+</html>

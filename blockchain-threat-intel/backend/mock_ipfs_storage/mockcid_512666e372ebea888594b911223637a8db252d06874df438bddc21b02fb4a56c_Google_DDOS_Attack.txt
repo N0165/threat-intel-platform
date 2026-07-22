@@ -1,0 +1,10 @@
+Attack Title: DDoS attack on public API gateway
+Attack Type: DDoS
+Date of Attack: 15-06-2026
+IP Addresses: 198.51.100.23, 203.0.113.77
+File Hashes: (leave blank)
+Domains: (leave blank)
+Attack Description: A volumetric DDoS attack overwhelmed the public API gateway with traffic spikes reaching 40 Gbps.
+How the Attack Happened: Botnet-driven UDP flood targeting the load balancer's public IP.
+Impact: API availability degraded for 90 minutes; some downstream partner integrations timed out.
+Mitigation Steps: Enabled upstream DDoS scrubbing service, added rate limiting, updated incident response runbook.

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Submit Threat Report</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="brand">🛡️ Threat Intel Network</div>
+  <div>
+    <a href="dashboard.html" id="navDashboardLink">Dashboard</a>
+    <a href="submit.html" id="navSubmitLink">Submit Report</a>
+    <a href="view.html">View Threats</a>
+    <a href="verify.html">Verify Report</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>📤 Submit Threat Intelligence Report</h1>
+  <p class="muted">This report will be hashed, stored on IPFS, and its fingerprint written permanently to the blockchain.</p>
+
+  <div id="alertBox" class="alert" style="display:none;"></div>
+
+  <div class="card">
+    <h3>📎 Upload Existing Report (optional)</h3>
+    <p class="muted">Already have an incident write-up as a .txt or .md file? Upload it and the form below will auto-fill from it. You can still edit anything before submitting.</p>
+    <input type="file" id="fileInput" accept=".txt,.md" />
+    <div style="margin-top:10px;">
+      <button type="button" onclick="parseUploadedFile()" class="secondary">🧠 Auto-Fill Form From File</button>
+      <button type="button" onclick="addAttachment()" class="secondary">➕ Attach Another File (no auto-fill)</button>
+    </div>
+    <ul id="attachmentList" style="margin-top:10px;"></ul>
+  </div>
+
+  <form id="submitForm" class="card">
+    <div class="grid-2">
+      <div class="form-group">
+        <label>Attack Title</label>
+        <input type="text" id="attackTitle" required placeholder="e.g. Phishing campaign targeting HR staff" />
+      </div>
+      <div class="form-group">
+        <label>Attack Type</label>
+        <select id="attackType" required>
+          <option value="DDoS">DDoS</option>
+          <option value="Phishing">Phishing</option>
+          <option value="Malware">Malware</option>
+          <option value="Ransomware">Ransomware</option>
+          <option value="SQL Injection">SQL Injection</option>
+          <option value="Man-in-the-Middle">Man-in-the-Middle</option>
+          <option value="Zero-Day">Zero-Day</option>
+          <option value="Insider Threat">Insider Threat</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Date of Attack</label>
+      <input type="date" id="dateOfAttack" required />
+    </div>
+
+    <h3>Indicators of Compromise (IOC)</h3>
+    <div class="grid-3">
+      <div class="form-group">
+        <label>IP Addresses (comma separated)</label>
+        <input type="text" id="iocIps" placeholder="192.168.1.10, 45.33.22.11" />
+      </div>
+      <div class="form-group">
+        <label>File Hashes (comma separated)</label>
+        <input type="text" id="iocHashes" placeholder="e99a18c428cb38d5f260853678922e03" />
+      </div>
+      <div class="form-group">
+        <label>Domains (comma separated)</label>
+        <input type="text" id="iocDomains" placeholder="malicious-site.com" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Attack Description</label>
+      <textarea id="attackDescription" required placeholder="Summarize what happened..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>How the Attack Happened</label>
+      <textarea id="howItHappened" required placeholder="Root cause, entry point, technique used..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Impact of the Attack</label>
+      <textarea id="impact" required placeholder="Systems affected, downtime, data loss, financial cost..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Mitigation Steps</label>
+      <textarea id="mitigationSteps" required placeholder="How it was contained / how others can prevent it..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Additional Information (anything from an uploaded file that didn't fit the fields above)</label>
+      <textarea id="additionalInformation" placeholder="Auto-filled from an uploaded file, or type manually..."></textarea>
+    </div>
+
+    <button type="submit">🔗 Submit &amp; Anchor to Blockchain</button>
+  </form>
+
+  <div id="resultCard" class="card" style="display:none;">
+    <h3>✅ Report Submitted</h3>
+    <p>Report Hash (SHA-256, stored on-chain):</p>
+    <div class="hash-box" id="resultHash"></div>
+    <p style="margin-top:12px;">IPFS CID:</p>
+    <div class="hash-box" id="resultIpfs"></div>
+    <p style="margin-top:12px;">Blockchain Transaction Hash:</p>
+    <div class="hash-box" id="resultTx"></div>
+  </div>
+</div>
+
+<!-- Success popup shown after a successful submission -->
+<div id="successModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:999;">
+  <div class="card" style="max-width:400px; text-align:center;">
+    <h2 style="margin-top:0;">✅ Report Submitted!</h2>
+    <p class="muted">Your threat report has been hashed, pinned to IPFS, and anchored to the blockchain.</p>
+    <button onclick="document.getElementById('successModal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/submit.js"></script>
+</body>
+</html>

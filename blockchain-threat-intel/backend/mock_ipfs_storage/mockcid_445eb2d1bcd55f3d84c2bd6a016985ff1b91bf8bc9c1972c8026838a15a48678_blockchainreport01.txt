@@ -1,0 +1,14 @@
+Attack Title: Ransomware encryption of file server
+Attack Type: Ransomware
+Date of Attack: 03-06-2026
+IP Addresses: 45.155.204.12
+File Hashes: e99a18c428cb38d5f260853678922e03
+Domains: (leave blank)
+Attack Description: A ransomware variant encrypted files on the shared department file server overnight.
+How the Attack Happened: Initial access via an unpatched RDP endpoint exposed to the internet; attacker moved laterally and deployed the payload after hours.
+Impact: 48 hours of downtime for the finance department; no ransom paid, restored from backups.
+Mitigation Steps: Closed exposed RDP port, enforced VPN-only remote access, patched the vulnerable service, improved backup isolation.
+
+
+
+

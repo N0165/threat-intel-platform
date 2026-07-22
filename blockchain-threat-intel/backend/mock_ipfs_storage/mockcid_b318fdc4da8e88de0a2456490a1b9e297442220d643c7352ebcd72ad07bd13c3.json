@@ -1,0 +1,22 @@
+{
+  "organizationName": "Cyber Defence",
+  "attackTitle": "Ransomware encryption of file server",
+  "attackType": "Ransomware",
+  "ioc": {
+    "ipAddresses": [
+      "45.155.204.12"
+    ],
+    "fileHashes": [
+      "e99a18c428cb38d5f260853678922e03"
+    ],
+    "domains": [
+      "(leave blank)"
+    ]
+  },
+  "attackDescription": "A ransomware variant encrypted files on the shared department file server overnight.",
+  "howItHappened": "Initial access via an unpatched RDP endpoint exposed to the internet; attacker moved laterally and deployed the payload after hours.",
+  "impact": "48 hours of downtime for the finance department; no ransom paid, restored from backups.",
+  "mitigationSteps": "Closed exposed RDP port, enforced VPN-only remote access, patched the vulnerable service, improved backup isolation.",
+  "dateOfAttack": "2026-03-05",
+  "additionalInformation": ""
+}
